@@ -5,7 +5,7 @@ export default function ChatList() {
     {
       id: 1,
       name: "General Chat",
-      lastMessage: "This is a real-time chat application with a dark theme.",
+      lastMessage: "This is a real-time chat application with an AMOLED black theme.",
       timestamp: "10:30 AM",
       unread: 0,
     },
@@ -42,18 +42,18 @@ export default function ChatList() {
           <li key={chat.id}>
             <a
               href="#"
-              className={`flex items-center p-3 hover:bg-gray-800 rounded-lg transition-colors ${
-                chat.id === 1 ? "bg-gray-800" : ""
+              className={`flex items-center p-3 hover:bg-[#111111] rounded-lg transition-colors ${
+                chat.id === 1 ? "bg-[#111111]" : ""
               }`}
             >
               <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                <span className="font-semibold">
+                <span className="font-semibold text-black">
                   {chat.name.charAt(0)}
                 </span>
               </div>
               <div className="ml-3 overflow-hidden flex-1">
                 <div className="flex justify-between items-baseline">
-                  <p className="font-medium truncate">{chat.name}</p>
+                  <p className="font-medium truncate text-foreground">{chat.name}</p>
                   <p className="text-xs text-muted">{chat.timestamp}</p>
                 </div>
                 <div className="flex justify-between items-center">
@@ -61,7 +61,7 @@ export default function ChatList() {
                     {chat.lastMessage}
                   </p>
                   {chat.unread > 0 && (
-                    <span className="bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    <span className="bg-primary text-black text-xs rounded-full h-5 w-5 flex items-center justify-center">
                       {chat.unread}
                     </span>
                   )}

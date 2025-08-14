@@ -13,7 +13,7 @@ export default function SearchBar() {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search chats and contacts..."
-          className="w-full bg-card-background border border-card-border rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
+          className="w-full bg-card-background border border-card-border rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
         />
         <div className="absolute left-3 top-2.5 text-muted">
           <svg

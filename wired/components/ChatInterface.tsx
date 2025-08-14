@@ -27,7 +27,7 @@ export default function ChatInterface() {
     },
     {
       id: "3",
-      content: "This is a real-time chat application with a dark theme.",
+      content: "This is a real-time chat application with an AMOLED black theme.",
       sender: "Alex",
       timestamp: new Date(),
     },
@@ -57,14 +57,8 @@ export default function ChatInterface() {
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="border-b border-card-border p-4">
-          <h1 className="text-2xl font-bold text-primary">General Chat</h1>
-          <p className="text-sm text-muted">Online - 3 members</p>
-        </header>
-
         {/* Chat Container */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 pattern-bg">
           {messages.map((message) => (
             <div
               key={message.id}
@@ -75,8 +69,8 @@ export default function ChatInterface() {
               <div
                 className={`max-w-xs md:max-w-md px-4 py-2 rounded-lg ${
                   message.sender === "You"
-                    ? "bg-primary text-white rounded-br-none"
-                    : "bg-card-background text-foreground rounded-bl-none"
+                    ? "bg-primary text-black rounded-br-none"
+                    : "bg-card-background text-foreground border border-card-border rounded-bl-none"
                 }`}
               >
                 <div className="font-semibold text-sm">

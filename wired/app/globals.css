@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --card-background: #1e293b;
-  --card-border: #334155;
-  --primary: #60a5fa;
-  --primary-hover: #3b82f6;
-  --secondary: #94a3b8;
-  --muted: #64748b;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card-background: #000000;
+  --card-border: #111111;
+  --primary: #ffffff;
+  --primary-hover: #e0e0e0;
+  --secondary: #888888;
+  --muted: #666666;
+  --input-background: #000000;
+  --pattern-color: rgba(255, 255, 255, 0.03);
 }
 
 @theme inline {
@@ -20,6 +22,7 @@
   --color-primary-hover: var(--primary-hover);
   --color-secondary: var(--secondary);
   --color-muted: var(--muted);
+  --color-input-background: var(--input-background);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -28,4 +31,66 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  /* Subtle dot pattern */
+  background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Custom styles for Clerk components */
+.cl-formField-successText {
+  color: #4ade80;
+}
+
+.cl-formField-errorText {
+  color: #f87171;
+}
+
+.cl-socialButtonsBlockButton {
+  transition: all 0.2s ease;
+}
+
+.cl-socialButtonsBlockButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cl-formButtonPrimary {
+  transition: all 0.2s ease;
+}
+
+.cl-formButtonPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cl-footerActionLink {
+  transition: color 0.2s ease;
+}
+
+/* Custom pattern styles */
+.pattern-bg {
+  background-image: radial-gradient(var(--pattern-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Card styles with pattern border */
+.card-pattern {
+  border: 1px solid var(--card-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-pattern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(90deg, var(--pattern-color) 1px, transparent 1px),
+    linear-gradient(180deg, var(--pattern-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
 }

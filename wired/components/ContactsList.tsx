@@ -19,11 +19,11 @@ export default function ContactsList() {
           <li key={contact.id}>
             <a
               href="#"
-              className="flex items-center p-3 hover:bg-gray-800 rounded-lg transition-colors"
+              className="flex items-center p-3 hover:bg-[#111111] rounded-lg transition-colors"
             >
               <div className="relative">
                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                  <span className="font-semibold">
+                  <span className="font-semibold text-black">
                     {contact.name.charAt(0)}
                   </span>
                 </div>
@@ -38,7 +38,7 @@ export default function ContactsList() {
                 ></div>
               </div>
               <div className="ml-3 overflow-hidden">
-                <p className="font-medium truncate">{contact.name}</p>
+                <p className="font-medium truncate text-foreground">{contact.name}</p>
                 <p className="text-sm text-muted truncate">
                   {contact.lastMessage}
                 </p>

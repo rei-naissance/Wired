@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import ContactsList from "@/components/ContactsList";
 import ChatList from "@/components/ChatList";
 import SearchBar from "@/components/SearchBar";
@@ -23,7 +24,7 @@ export default function Sidebar() {
         {!isCollapsed && <h2 className="text-xl font-bold text-primary">Wires</h2>}
         <button
           onClick={toggleSidebar}
-          className="text-muted hover:text-foreground p-2 rounded-lg hover:bg-gray-800"
+          className="text-muted hover:text-foreground p-2 rounded-lg hover:bg-[#111111]"
         >
           {isCollapsed ? (
             <svg
@@ -61,36 +62,78 @@ export default function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-2">
         <ul className="space-y-1">
-          {[
-            { name: "Chats", icon: "M8 12h.01M12 12h.01M16 12h.01" },
-            { name: "Contacts", icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" },
-            { name: "Settings", icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" },
-          ].map((item, index) => (
-            <li key={index}>
-              <a
-                href="#"
-                className="flex items-center p-3 text-foreground hover:bg-gray-800 rounded-lg transition-colors"
+          <li>
+            <Link 
+              href="/"
+              className="flex items-center p-3 text-foreground hover:bg-[#111111] rounded-lg transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 text-primary"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d={item.icon}
-                  />
-                </svg>
-                {!isCollapsed && (
-                  <span className="ml-3">{item.name}</span>
-                )}
-              </a>
-            </li>
-          ))}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 12h.01M12 12h.01M16 12h.01"
+                />
+              </svg>
+              {!isCollapsed && (
+                <span className="ml-3">Chats</span>
+              )}
+            </Link>
+          </li>
+          <li>
+            <Link 
+              href="/"
+              className="flex items-center p-3 text-foreground hover:bg-[#111111] rounded-lg transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                />
+              </svg>
+              {!isCollapsed && (
+                <span className="ml-3">Contacts</span>
+              )}
+            </Link>
+          </li>
+          <li>
+            <Link 
+              href="/settings"
+              className="flex items-center p-3 text-foreground hover:bg-[#111111] rounded-lg transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+              </svg>
+              {!isCollapsed && (
+                <span className="ml-3">Settings</span>
+              )}
+            </Link>
+          </li>
         </ul>
 
         {/* Chat List */}
@@ -99,21 +142,6 @@ export default function Sidebar() {
         {/* Contacts List */}
         {!isCollapsed && <ContactsList />}
       </nav>
-
-      {/* User Profile */}
-      <div className="p-4 border-t border-card-border">
-        <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-            <span className="font-semibold">U</span>
-          </div>
-          {!isCollapsed && (
-            <div className="ml-3">
-              <p className="font-medium">User Name</p>
-              <p className="text-sm text-muted">Online</p>
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 }

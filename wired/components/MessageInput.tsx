@@ -23,11 +23,11 @@ export default function MessageInput({ onSend }: MessageInputProps) {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Type a message..."
-        className="flex-1 bg-card-background border border-card-border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary"
+        className="flex-1 bg-card-background border border-card-border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-primary text-foreground"
       />
       <button
         type="submit"
-        className="bg-primary hover:bg-primary-hover text-white font-semibold px-4 py-2 rounded-r-lg transition-colors"
+        className="bg-primary hover:bg-primary-hover text-black font-semibold px-4 py-2 rounded-r-lg transition-colors"
       >
         Send
       </button>
