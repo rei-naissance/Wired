@@ -54,11 +54,11 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen pattern-bg">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         {/* Chat Container */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 pattern-bg">
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {messages.map((message) => (
             <div
               key={message.id}

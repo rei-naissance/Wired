@@ -61,7 +61,7 @@ export default function ChatList() {
                     {chat.lastMessage}
                   </p>
                   {chat.unread > 0 && (
-                    <span className="bg-primary text-black text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    <span className="bg-primary text-black text-xs rounded-full h-5 w-5 flex items-center justify-center min-w-5">
                       {chat.unread}
                     </span>
                   )}

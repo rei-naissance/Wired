@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wires - Real-time Chat",
+  title: "Wired - Real-time Chat",
   description: "A dark-themed real-time chat application",
 };
 
@@ -28,7 +28,7 @@ export default function RootLayout({
       <html lang="en">
         <body
           suppressHydrationWarning
-          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground pattern-bg`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
         >
           {children}
         </body>

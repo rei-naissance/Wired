@@ -23,8 +23,9 @@ export default function SettingsPage() {
         <div className="border-b border-card-border p-4">
           <div className="flex items-center">
             <button 
-              onClick={() => router.back()}
+              onClick={() => router.push("/")}
               className="mr-4 p-2 rounded-lg hover:bg-[#111111] text-foreground"
+              aria-label="Go back to chats"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
