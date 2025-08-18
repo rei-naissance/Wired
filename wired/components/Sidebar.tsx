@@ -5,6 +5,7 @@ import Link from "next/link";
 import ContactsList from "@/components/ContactsList";
 import ChatList from "@/components/ChatList";
 import SearchBar from "@/components/SearchBar";
+import { Cable } from "lucide-react"
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -21,7 +22,12 @@ export default function Sidebar() {
     >
       {/* Sidebar Header */}
       <div className="p-4 border-b border-card-border flex items-center justify-between">
-        {!isCollapsed && <h2 className="text-xl font-bold text-primary">Wires</h2>}
+        {!isCollapsed && (
+          <span className="flex items-center gap-2">
+            <Cable className="h-6 w-6 text-primary" />
+            <h2 className="text-xl font-bold text-primary">Wired</h2>
+          </span>
+        )}
         <button
           onClick={toggleSidebar}
           className="text-muted hover:text-foreground p-2 rounded-lg hover:bg-[#111111]"
