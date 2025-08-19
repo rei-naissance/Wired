@@ -1,18 +1,46 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
-import ContactsList from "@/components/ContactsList";
-import ChatList from "@/components/ChatList";
-import SearchBar from "@/components/SearchBar";
+// import ContactsList from "@/components/ContactsList";
+// import ChatList from "@/components/ChatList";
+// Mock data for base search implementation
+const mockChats = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+];
+const mockContacts = [
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 3, name: "Charlie" },
+  { id: 4, name: "David" },
+];
 import { Cable } from "lucide-react"
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [search, setSearch] = useState("");
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  // Filtered data for demonstration
+  const filteredChats = useMemo(
+    () =>
+      mockChats.filter((chat) =>
+        chat.name.toLowerCase().includes(search.toLowerCase())
+      ),
+    [search]
+  );
+  const filteredContacts = useMemo(
+    () =>
+      mockContacts.filter((contact) =>
+        contact.name.toLowerCase().includes(search.toLowerCase())
+      ),
+    [search]
+  );
 
   return (
     <div
@@ -63,7 +91,17 @@ export default function Sidebar() {
       </div>
 
       {/* Search Bar */}
-      {!isCollapsed && <SearchBar />}
+      {!isCollapsed && (
+        <div className="p-2">
+          <input
+            type="text"
+            placeholder="Search chats or contacts..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full p-2 rounded bg-card-background border border-card-border text-foreground focus:outline-none"
+          />
+        </div>
+      )}
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto p-2">
@@ -143,10 +181,38 @@ export default function Sidebar() {
         </ul>
 
         {/* Chat List */}
-        {!isCollapsed && <ChatList />}
+        {!isCollapsed && (
+          <div>
+            <h3 className="text-sm font-semibold text-muted mb-1 mt-2">Chats</h3>
+            <ul>
+              {filteredChats.map((chat) => (
+                <li key={chat.id} className="p-2 hover:bg-[#111111] rounded cursor-pointer">
+                  {chat.name}
+                </li>
+              ))}
+              {filteredChats.length === 0 && (
+                <li className="p-2 text-muted">No chats found</li>
+              )}
+            </ul>
+          </div>
+        )}
 
         {/* Contacts List */}
-        {!isCollapsed && <ContactsList />}
+        {!isCollapsed && (
+          <div>
+            <h3 className="text-sm font-semibold text-muted mb-1 mt-4">Contacts</h3>
+            <ul>
+              {filteredContacts.map((contact) => (
+                <li key={contact.id} className="p-2 hover:bg-[#111111] rounded cursor-pointer">
+                  {contact.name}
+                </li>
+              ))}
+              {filteredContacts.length === 0 && (
+                <li className="p-2 text-muted">No contacts found</li>
+              )}
+            </ul>
+          </div>
+        )}
       </nav>
     </div>
   );
