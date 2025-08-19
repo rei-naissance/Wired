@@ -42,6 +42,13 @@ export default function Sidebar() {
     [search]
   );
 
+  // Placeholder avatar generator (first letter)
+  const Avatar = ({ name }: { name: string }) => (
+    <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-primary/80 to-muted flex items-center justify-center text-lg font-semibold text-background shadow">
+      {name.charAt(0).toUpperCase()}
+    </div>
+  );
+
   return (
     <div
       className={`${
@@ -184,10 +191,15 @@ export default function Sidebar() {
         {!isCollapsed && (
           <div>
             <h3 className="text-sm font-semibold text-muted mb-1 mt-2">Chats</h3>
-            <ul>
+            <ul className="space-y-2">
               {filteredChats.map((chat) => (
-                <li key={chat.id} className="p-2 hover:bg-[#111111] rounded cursor-pointer">
-                  {chat.name}
+                <li key={chat.id} className="group flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary">
+                  <Avatar name={chat.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-foreground truncate">{chat.name}</div>
+                    <div className="text-xs text-muted truncate">Last message preview...</div>
+                  </div>
+                  <span className="ml-auto text-xs text-muted group-hover:text-primary">•</span>
                 </li>
               ))}
               {filteredChats.length === 0 && (
@@ -201,10 +213,14 @@ export default function Sidebar() {
         {!isCollapsed && (
           <div>
             <h3 className="text-sm font-semibold text-muted mb-1 mt-4">Contacts</h3>
-            <ul>
+            <ul className="space-y-2">
               {filteredContacts.map((contact) => (
-                <li key={contact.id} className="p-2 hover:bg-[#111111] rounded cursor-pointer">
-                  {contact.name}
+                <li key={contact.id} className="flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary">
+                  <Avatar name={contact.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-foreground truncate">{contact.name}</div>
+                    <div className="text-xs text-muted truncate">Online</div>
+                  </div>
                 </li>
               ))}
               {filteredContacts.length === 0 && (
