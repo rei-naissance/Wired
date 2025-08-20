@@ -22,7 +22,7 @@ export default function MessageInput({ onSend }: MessageInputProps) {
         <div className="relative flex-1">
           <input
             type="text"
-            className="w-full px-4 py-2 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:text-white transition-colors duration-300 delay-100"
             placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
