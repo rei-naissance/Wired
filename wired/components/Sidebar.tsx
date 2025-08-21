@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 // import ContactsList from "@/components/ContactsList";
 // import ChatList from "@/components/ChatList";
@@ -10,7 +11,9 @@ import { Cable } from "lucide-react"
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [search, setSearch] = useState("");
-  const [selectedChat, setSelectedChat] = useState(chatUsers[0].id);
+  const pathname = usePathname();
+  const chatIdMatch = pathname.match(/\/chats\/(\w+)/);
+  const selectedChat = chatIdMatch ? chatIdMatch[1] : chatUsers[0].id;
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -178,17 +181,18 @@ export default function Sidebar() {
             <h3 className="text-sm font-semibold text-muted mb-1 mt-2">Chats</h3>
             <ul className="space-y-2">
               {filteredChats.map((chat: ChatUser) => (
-                <li
-                  key={chat.id}
-                  className={`group flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary ${selectedChat === chat.id ? "border-primary" : ""}`}
-                  onClick={() => setSelectedChat(chat.id)}
-                >
-                  <Avatar name={chat.name} />
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-foreground truncate">{chat.name}</div>
-                    <div className="text-xs text-muted truncate">Last message preview...</div>
-                  </div>
-                  <span className="ml-auto text-xs text-muted group-hover:text-primary">•</span>
+                <li key={chat.id}>
+                  <Link
+                    href={`/chats/${chat.id}`}
+                    className={`group flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary ${selectedChat === chat.id ? "border-primary" : ""}`}
+                  >
+                    <Avatar name={chat.name} />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-foreground truncate">{chat.name}</div>
+                      <div className="text-xs text-muted truncate">Last message preview...</div>
+                    </div>
+                    <span className="ml-auto text-xs text-muted group-hover:text-primary">•</span>
+                  </Link>
                 </li>
               ))}
               {filteredChats.length === 0 && (
