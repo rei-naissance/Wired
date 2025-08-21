@@ -60,7 +60,7 @@ export default function ChatPage({ params }: ChatPageProps) {
         <div ref={messagesEndRef} />
       </div>
       {/* Message Input */}
-      <div className="px-8 pb-8">
+      <div>
         <MessageInput onSend={handleSend} />
       </div>
     </div>
