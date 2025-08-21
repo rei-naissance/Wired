@@ -105,7 +105,7 @@ export default function Sidebar() {
             placeholder="Search chats or contacts..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full p-2 rounded-full bg-card-background border border-card-border text-foreground focus:outline-none"
+            className="w-full p-2 pl-4 rounded-full bg-card-background border border-card-border text-foreground focus:outline-none"
           />
         </div>
       )}
