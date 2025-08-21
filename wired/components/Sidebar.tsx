@@ -4,43 +4,28 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 // import ContactsList from "@/components/ContactsList";
 // import ChatList from "@/components/ChatList";
-// Mock data for base search implementation
-const mockChats = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" },
-];
-const mockContacts = [
-  { id: 1, name: "Alice" },
-  { id: 2, name: "Bob" },
-  { id: 3, name: "Charlie" },
-  { id: 4, name: "David" },
-];
+import { chatUsers, ChatUser } from "../lib/chatData";
 import { Cable } from "lucide-react"
 
 export default function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [search, setSearch] = useState("");
+  const [selectedChat, setSelectedChat] = useState(chatUsers[0].id);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
   // Filtered data for demonstration
-  const filteredChats = useMemo(
+  const filteredChats: ChatUser[] = useMemo(
     () =>
-      mockChats.filter((chat) =>
-        chat.name.toLowerCase().includes(search.toLowerCase())
+      chatUsers.filter((user: ChatUser) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
       ),
     [search]
   );
-  const filteredContacts = useMemo(
-    () =>
-      mockContacts.filter((contact) =>
-        contact.name.toLowerCase().includes(search.toLowerCase())
-      ),
-    [search]
-  );
+  // For now, contacts = chats (can be split later)
+  const filteredContacts: ChatUser[] = filteredChats;
 
   // Placeholder avatar generator (first letter)
   const Avatar = ({ name }: { name: string }) => (
@@ -192,8 +177,12 @@ export default function Sidebar() {
           <div>
             <h3 className="text-sm font-semibold text-muted mb-1 mt-2">Chats</h3>
             <ul className="space-y-2">
-              {filteredChats.map((chat) => (
-                <li key={chat.id} className="group flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary">
+              {filteredChats.map((chat: ChatUser) => (
+                <li
+                  key={chat.id}
+                  className={`group flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary ${selectedChat === chat.id ? "border-primary" : ""}`}
+                  onClick={() => setSelectedChat(chat.id)}
+                >
                   <Avatar name={chat.name} />
                   <div className="flex-1 min-w-0">
                     <div className="font-medium text-foreground truncate">{chat.name}</div>
@@ -214,7 +203,7 @@ export default function Sidebar() {
           <div>
             <h3 className="text-sm font-semibold text-muted mb-1 mt-4">Contacts</h3>
             <ul className="space-y-2">
-              {filteredContacts.map((contact) => (
+              {filteredContacts.map((contact: ChatUser) => (
                 <li key={contact.id} className="flex items-center gap-3 p-2 rounded-xl bg-card/60 hover:bg-card-border transition cursor-pointer shadow-sm border border-transparent hover:border-primary">
                   <Avatar name={contact.name} />
                   <div className="flex-1 min-w-0">
