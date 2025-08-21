@@ -18,11 +18,11 @@ export default function MessageInput({ onSend }: MessageInputProps) {
   };
 
     return (
-  <div className="flex items-center p-2 border-t border-card-border">
+  <div className="flex items-center p-4 border-t border-card-border">
         <div className="relative flex-1">
           <input
             type="text"
-            className="w-full px-4 py-2 pr-12 rounded-full border border-card-border focus:outline-none"
+            className="w-full px-6 py-3 pr-16 rounded-full border border-card-border focus:outline-none"
             placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
