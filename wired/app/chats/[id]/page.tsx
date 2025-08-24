@@ -23,7 +23,7 @@ export default function ChatPage({ params }: ChatPageProps) {
   const handleSend = (text: string) => {
     setMessages([
       ...messages,
-      { from: "You", text },
+      { from: "You", text, timestamp: new Date() },
     ]);
   };
 
@@ -54,6 +54,9 @@ export default function ChatPage({ params }: ChatPageProps) {
                 {msg.from}
               </div>
               <div className="mt-1">{msg.text}</div>
+              <div className="text-xs mt-1 text-muted text-right">
+                {msg.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+              </div>
             </div>
           </div>
         ))}
