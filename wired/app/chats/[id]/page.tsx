@@ -41,8 +41,13 @@ export default function ChatPage({ params }: ChatPageProps) {
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`flex ${msg.from === "You" ? "justify-end" : "justify-start"}`}
+            className={`flex ${msg.from === "You" ? "justify-end" : "justify-start"} items-end`}
           >
+            {msg.from !== "You" && (
+              <div className="mr-2 flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/80 to-muted flex items-center justify-center text-base font-bold text-background">
+                {msg.from.charAt(0).toUpperCase()}
+              </div>
+            )}
             <div
               className={`max-w-xs md:max-w-md px-4 py-2 rounded-lg ${
                 msg.from === "You"
