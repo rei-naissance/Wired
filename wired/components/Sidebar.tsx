@@ -127,7 +127,7 @@ export default function Sidebar() {
           </li>
           <li>
             <Link 
-              href="/"
+              href="/contacts"
               className="flex items-center p-3 text-foreground hover:bg-[#111111] rounded-lg transition-colors"
             >
               <svg
