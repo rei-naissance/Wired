@@ -1,10 +1,37 @@
 // Custom sign-up page
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
+import { SignUp, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const { user, isLoaded } = useUser();
+  const router = useRouter();
+  const [redirecting, setRedirecting] = useState(false);
+
+  // When Clerk signs the user in after sign-up, automatically navigate to settings for profile completion
+  useEffect(() => {
+    if (!isLoaded) return;
+    if (user) {
+      setRedirecting(true);
+      // small timeout to allow Clerk client to settle, then redirect
+      const t = setTimeout(() => router.push("/settings"), 300);
+      return () => clearTimeout(t);
+    }
+  }, [user, isLoaded, router]);
+
+  if (redirecting) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background pattern-bg p-4">
+        <div className="text-center">
+          <p className="text-foreground">Account created — completing setup...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-background pattern-bg p-4">
       <div className="w-full max-w-md">
