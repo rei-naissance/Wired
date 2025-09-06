@@ -120,7 +120,7 @@ export default function SettingsPage() {
                 </div>
                 <div className="ml-6 flex-1">
                   <h2 className="text-2xl font-bold text-foreground">Welcome{firstName ? `, ${firstName}` : ""}</h2>
-                  <p className="text-muted">Finish your profile so others recognize you</p>
+                  <p className="text-muted">Finish your profile so others can recognize you</p>
                 </div>
               </div>
 
